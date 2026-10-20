@@ -17,12 +17,12 @@ public class IntakeTest extends OpMode {
     }
     @Override
     public void start(){
-
+        intake.setIntake(constants.INTAKE_PRESETS.off);
     }
     public void loop(){
-        intake.setIntake(constants.INTAKE_PRESETS.on);
+        intake.setIntake(constants.INTAKE_PRESETS.off);
         if (mode==1){
-            intake.setIntake(constants.INTAKE_PRESETS.off);
+            intake.setIntake(constants.INTAKE_PRESETS.on);
         }
     }
 
