@@ -14,7 +14,8 @@ public class constants {
     }
 
     public enum INTAKE_PRESETS {
-
+        on,
+        off
     }
 
     @Config
