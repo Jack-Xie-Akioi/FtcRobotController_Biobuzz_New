@@ -10,7 +10,6 @@ import org.firstinspires.ftc.teamcode.util.constants;
 @TeleOp(name = "Intake Test")
 public class IntakeTest extends OpMode {
     private Intake intake;
-    private static int mode;
     public void init(){
         intake = new Intake();
         intake.init(hardwareMap);
@@ -21,9 +20,7 @@ public class IntakeTest extends OpMode {
     }
     public void loop(){
         intake.setIntake(constants.INTAKE_PRESETS.on);
-        if (mode==1){
-            intake.setIntake(constants.INTAKE_PRESETS.off);
-        }
+
     }
 
 }

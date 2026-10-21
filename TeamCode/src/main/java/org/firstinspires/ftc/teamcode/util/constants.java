@@ -11,7 +11,6 @@ public class constants {
     @Config
     public static class intake {
         public static double Servo1_up=0.5;
-
     }
 
     public enum INTAKE_PRESETS {
