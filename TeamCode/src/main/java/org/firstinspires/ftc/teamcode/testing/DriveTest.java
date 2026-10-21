@@ -18,8 +18,8 @@ public class DriveTest extends OpMode {
         ManualDrive.driveOrHold(
                 follower,
                 -gamepad1.left_stick_y,
-                gamepad1.left_stick_x,
-                gamepad1.right_stick_x*0.55
+                -gamepad1.left_stick_x,
+                -gamepad1.right_stick_x
         );
         follower.update();
     }
