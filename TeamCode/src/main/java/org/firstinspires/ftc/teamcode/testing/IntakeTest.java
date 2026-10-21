@@ -20,7 +20,9 @@ public class IntakeTest extends OpMode {
         intake.setIntake(constants.INTAKE_PRESETS.off);
     }
     public void loop(){
-        intake.setIntake(constants.INTAKE_PRESETS.off);
+        if (mode==0){
+            intake.setIntake(constants.INTAKE_PRESETS.off);
+        }
         if (mode==1){
             intake.setIntake(constants.INTAKE_PRESETS.on);
         }
