@@ -44,8 +44,8 @@ public class Intake {
                 intakeState = "ON";
                 motorL.setPower(1);//does this need a specific motor object? template didn't have one
                 motorR.setPower(1);
-                servoL.setPosition(constants.INTAKE_PRESETS.servoAngleDown);
-                servoR.setPosition(constants.INTAKE_PRESETS.servoAngleDown);
+                servoL.setPosition(constants.INTAKE_PRESETS.servoAngleActive);
+                servoR.setPosition(constants.INTAKE_PRESETS.servoAngleActive);
                 break;
             case OFF:
                 intakeState= "OFF";
