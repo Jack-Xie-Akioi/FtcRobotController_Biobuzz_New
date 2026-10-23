@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode.testing;
-import com.pedropathing.follower.Follower;
-import com.pedropathing.follower.ManualDrive;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.pedro.Constants;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.util.constants;
 

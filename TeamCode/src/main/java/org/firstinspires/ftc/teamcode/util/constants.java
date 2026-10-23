@@ -1,14 +1,16 @@
 package org.firstinspires.ftc.teamcode.util;
+import com.bylazar.configurables.annotations.Configurable;
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
 
-import com.acmerobotics.dashboard.config.Config;
 
-@Config
+@Configurable
 public class constants {
 
     //General Constants
 
     //Intake Constants
-    @Config
+    @Configurable
     public static class intake {
         public static double Servo1_up=0.5;
     }
@@ -18,13 +20,13 @@ public class constants {
         off
     }
 
-    @Config
+    @Configurable
     public enum INTAKE_EXTENSION {
         ON;
     }
 
     //Shooter Constants
-    @Config
+    @Configurable
     public static class shooter {
 
     }
