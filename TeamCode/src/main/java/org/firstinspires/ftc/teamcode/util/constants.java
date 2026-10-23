@@ -14,6 +14,10 @@ public class constants {
     }
 
     public enum INTAKE_PRESETS {
+       //figure out how to add NO and Yes States
+        ON,OFF;//work out how enum works
+        public static final int servoAngleDown = 0;//I'm not super used to using enum, lmk if variables like this should go here
+        public static final int servoAngleIdle=90;//these values are my best guess, idk where the servos are
 
     }
 
