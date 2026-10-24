@@ -11,11 +11,13 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.util.constants;
+
 @TeleOp(name = "Jack Intake Test")
 @Configurable
 public class Jack_Intaketest extends OpMode {
-    public static int m = 1;
-    public static double Servo_pos = 0;
+    public static int m = 0;
+    public static double Servo_pos = 0.5;
 
     private DcMotorEx intakeleft;
     private DcMotorEx intakeright;
@@ -61,7 +63,7 @@ public class Jack_Intaketest extends OpMode {
 
         intakeleft.setPower(Intake_power);
         intakeright.setPower(Intake_power);
-        servoL.setPosition(Servo_pos);
+        servoL.setPosition(Servo_pos-constants.intake.servo_offset);
         servoR.setPosition(Servo_pos);
 
         panelsTelemetry.debug("Mode", m);

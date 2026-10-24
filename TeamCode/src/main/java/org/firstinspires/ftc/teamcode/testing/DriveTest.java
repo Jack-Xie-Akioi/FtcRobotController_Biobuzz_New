@@ -6,27 +6,23 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.pedro.Constants;
+import org.firstinspires.ftc.teamcode.subsystems.Intake;
+import org.firstinspires.ftc.teamcode.util.constants;
+
 @TeleOp(name = "Eric's Training Session")
 public class DriveTest extends OpMode {
     private Follower follower;
     private DcMotorEx intakeleft;
     private DcMotorEx intakeright;
+    Intake intake;
     @Override
     public void init() {
-
+        intake = new Intake();
+        intake.init(hardwareMap);
         follower = Constants.create(hardwareMap);
-        intakeleft = hardwareMap.get(DcMotorEx.class, "IntakeLeft");
-        intakeright = hardwareMap.get(DcMotorEx.class, "IntakeRight");
-
-        intakeleft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        intakeright.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        intakeleft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        intakeright.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        intakeright.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     @Override
     public void loop() {
@@ -40,16 +36,13 @@ public class DriveTest extends OpMode {
         );
         if (gamepad1.right_trigger>0)
         {
-            intakeleft.setPower(1);
-            intakeright.setPower(1);
+            intake.setIntake(constants.INTAKE_PRESETS.ON);
         }
         else if (gamepad1.left_trigger>0){
-            intakeleft.setPower(-1);
-            intakeright.setPower(-1);
+            intake.setIntake(constants.INTAKE_PRESETS.OUT);
         }
         else{
-            intakeleft.setPower(0);
-            intakeright.setPower(0);
+            intake.setIntake(constants.INTAKE_PRESETS.OFF);
         }
         follower.update();
     }

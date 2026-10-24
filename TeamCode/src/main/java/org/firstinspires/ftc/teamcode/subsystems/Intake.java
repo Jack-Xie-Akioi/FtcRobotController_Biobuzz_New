@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
-import static android.webkit.WebSettings.PluginState.OFF;
-import static android.webkit.WebSettings.PluginState.ON;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.util.constants;
 
 public class Intake {
@@ -20,17 +19,18 @@ public class Intake {
 
     private String intakeState;
 
-
-
-
-
     public void init(HardwareMap map) {
         motorR = map.get(DcMotorEx.class, "IntakeRight");
         motorL = map.get(DcMotorEx.class, "IntakeLeft");
         motorL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         motorL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        motorL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorR.setDirection(DcMotorSimple.Direction.REVERSE);
+
         servoR = map.get(Servo.class, "IntakeServoRight");
         servoL = map.get(Servo.class, "IntakeServoLeft");
+        servoR.setDirection(Servo.Direction.REVERSE);
 
     }
 
@@ -42,23 +42,24 @@ public class Intake {
         switch (state) {
             case ON:
                 intakeState = "ON";
-                motorL.setPower(1);//does this need a specific motor object? template didn't have one
-                motorR.setPower(1);
-                servoL.setPosition(constants.INTAKE_PRESETS.servoAngleActive);
-                servoR.setPosition(constants.INTAKE_PRESETS.servoAngleActive);
+                setPower(1);
+                servoL.setPosition(constants.intake.servo_down-constants.intake.servo_offset);
+                servoR.setPosition(constants.intake.servo_down);
                 break;
             case OFF:
                 intakeState= "OFF";
-                motorL.setPower(0);
-                motorR.setPower(0);
-                servoR.setPosition(constants.INTAKE_PRESETS.servoAngleIdle);
-                servoL.setPosition(constants.INTAKE_PRESETS.servoAngleIdle);
+                setPower(0);
+                servoL.setPosition(constants.intake.servo_up-constants.intake.servo_offset);
+                servoR.setPosition(constants.intake.servo_up);
+                break;
+            case OUT:
+                intakeState= "OUT";
+                setPower(-1);
+                servoL.setPosition(constants.intake.servo_up-constants.intake.servo_offset);
+                servoR.setPosition(constants.intake.servo_up);
                 break;
         }
     }
-
-
-
 
 
     public void setPower(double power) {//what would this method be used for?
