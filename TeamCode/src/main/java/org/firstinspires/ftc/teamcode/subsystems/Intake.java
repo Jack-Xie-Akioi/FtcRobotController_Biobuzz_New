@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 //Imports
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -67,7 +66,7 @@ public final class Intake extends Subsystem{
         update();
     }
 
-    //State setting and getting
+    //Setter and Getter Methods
     public void setIntakeState(IntakeState state) {
         if (state == null) {
             throw new IllegalArgumentException("INTAKE MOTOR STATE NULL");
@@ -122,7 +121,7 @@ public final class Intake extends Subsystem{
                 break;
 
             case REVERSED:
-                commandedMotorPower = reversePower;
+                commandedMotorPower = -reversePower;
                 break;
         }
 
