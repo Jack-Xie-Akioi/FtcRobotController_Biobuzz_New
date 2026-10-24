@@ -37,5 +37,14 @@ public class Constants {
     public static double KS = 0;
     public static double KV = 0;
 
+    //TARGET POSITIONS
+    public static double BLUE_CLOSE_X = 10;
+    public static double BLUE_CLOSE_Y = 100;
+    public static double BLUE_FAR_X = 100;
+    public static double BLUE_FAR_Y = 100;
 
+    public static double RED_CLOSE_X = 100;
+    public static double RED_CLOSE_Y = 10;
+    public static double RED_FAR_X = 10;
+    public static double RED_FAR_Y = 10;
 }
