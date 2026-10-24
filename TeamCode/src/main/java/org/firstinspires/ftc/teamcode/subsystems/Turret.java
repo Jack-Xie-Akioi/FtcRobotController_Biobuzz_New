@@ -189,7 +189,7 @@ public final class Turret extends Subsystem {
                     break;
                 }
 
-                double fieldAngleDegrees = Math.toRadians(Math.atan2(dy, dx));
+                double fieldAngleDegrees = Math.toDegrees(Math.atan2(dy, dx));
 
                 requestedAngleDegrees = normalizeDegrees(fieldAngleDegrees - robotHeadingDegrees - 180);
                 break;
@@ -251,6 +251,8 @@ public final class Turret extends Subsystem {
 
         if (positiveAllowed && negativeAllowed) {
             double reference = Double.isNaN(lastWrittenAngleDegrees) ? commandedAngleDegrees : lastWrittenAngleDegrees;
+
+            requestedAngleDegrees = reference >= 0 ? 180 : -180;
         } else if (positiveAllowed) {
             requestedAngleDegrees = 180;
         } else if (negativeAllowed) {
@@ -289,7 +291,7 @@ public final class Turret extends Subsystem {
         requireFinite(minimum);
         requireFinite(maximum);
 
-        if (minimum < 0 || maximum > 1 || center < minimum || center > maximum) {
+        if (minimum < 0 || maximum > 1 || minimum >= maximum || center < minimum || center > maximum) {
             throw new IllegalArgumentException("INVALID TURRET SERVO CALIBRATION");
         }
     }
