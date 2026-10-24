@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.util.Constants;
+
 public final class Pantograph extends Subsystem{
 
     public enum PantographState {
@@ -11,10 +13,6 @@ public final class Pantograph extends Subsystem{
     }
 
     private static final String SERVO_NAME = "pantograph";
-
-    // Calibration necessary !!
-    public static double RAISED_POSITION = 0.2;
-    public static double LOWERED_POSITION = 0.75;
 
     private final Servo pantograph;
 
@@ -57,11 +55,11 @@ public final class Pantograph extends Subsystem{
     public void update() {
         switch (pantographState) {
             case RAISED:
-                commandedServoPos = RAISED_POSITION;
+                commandedServoPos = Constants.PANTOGRAPH_RAISED_POSITION;
                 break;
 
             case LOWERED:
-                commandedServoPos = LOWERED_POSITION;
+                commandedServoPos = Constants.PANTOGRAPH_LOWERED_POSITION;
                 break;
         }
     }

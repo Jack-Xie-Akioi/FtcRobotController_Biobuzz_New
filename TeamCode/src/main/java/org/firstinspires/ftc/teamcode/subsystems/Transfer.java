@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+import org.firstinspires.ftc.teamcode.util.Constants;
 
 public final class Transfer extends Subsystem{
 
@@ -24,10 +25,6 @@ public final class Transfer extends Subsystem{
 
     private static final String MOTOR_NAME = "transfer";
     private static final String SERVO_NAME = "stopper";
-
-    //Calibration Necessary !!
-    private static final double CLOSED_POSITION = 0.2;
-    private static final double OPEN_POSITION = 0.75;
 
     private static final double CURRENT_THRESHOLD_AMPS = 4.0;
     private static final long CURRENT_DURATION_MS = 100;
@@ -190,11 +187,11 @@ public final class Transfer extends Subsystem{
         if (appliedStopperState != stopperState) {
             switch (stopperState) {
                 case CLOSED:
-                    stopper.setPosition(CLOSED_POSITION);
+                    stopper.setPosition(Constants.CLOSED_POSITION);
                     break;
 
                 case OPEN:
-                    stopper.setPosition(OPEN_POSITION);
+                    stopper.setPosition(Constants.OPEN_POSITION);
                     break;
             }
 

@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.util.Constants;
+
 public final class Intake extends Subsystem{
 
     //Case based architecture
@@ -23,11 +25,6 @@ public final class Intake extends Subsystem{
     private static final String MOTOR_NAME = "intake";
     private static final String LEFT_SERVO_NAME = "intakeLeft";
     private static final String RIGHT_SERVO_NAME = "intakeRight";
-
-    //Calibration Necessary?
-    public static double RAISED_POSITION = 0.29;
-    public static double LOWERED_POSITION = 0.5;
-    public static double SERVO_OFFSET = 0.02;
 
     private final DcMotorEx intake;
     private final Servo left;
@@ -127,11 +124,11 @@ public final class Intake extends Subsystem{
 
         switch (linkageState) {
             case RAISED:
-                commandedServoPos = RAISED_POSITION;
+                commandedServoPos = Constants.RAISED_POSITION;
                 break;
 
             case LOWERED:
-                commandedServoPos = LOWERED_POSITION;
+                commandedServoPos = Constants.LOWERED_POSITION;
                 break;
         }
     }
@@ -145,7 +142,7 @@ public final class Intake extends Subsystem{
         }
         if (Double.compare(commandedServoPos, lastServoPos) != 0) {
             left.setPosition(commandedServoPos);
-            right.setPosition(commandedServoPos + SERVO_OFFSET);
+            right.setPosition(commandedServoPos + Constants.SERVO_OFFSET);
 
             lastServoPos = commandedServoPos;
         }
