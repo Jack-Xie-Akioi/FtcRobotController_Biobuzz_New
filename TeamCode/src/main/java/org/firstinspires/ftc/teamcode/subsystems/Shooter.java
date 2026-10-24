@@ -23,7 +23,6 @@ public final class Shooter extends Subsystem{
     private static final double HOOD_MIN_POSITION = 0.2;
     private static final double HOOD_MAX_POSITION = 0.8;
     private static final double HOOD_INITIAL_POSITION = HOOD_MIN_POSITION;
-    private static final double HOOD_SETTLE_MS = 75;
 
     private final DcMotorEx shooter;
     private final Servo hood;
@@ -39,7 +38,6 @@ public final class Shooter extends Subsystem{
     private double lastHoodPos = Double.NaN;
 
     private final ElapsedTime controlTimer = new ElapsedTime();
-    private final ElapsedTime hoodTimer = new ElapsedTime();
 
     private double integral;
     private double previousVel;
@@ -119,12 +117,8 @@ public final class Shooter extends Subsystem{
         return controllerInitialized && shooterState == ShooterState.RUNNING && targetVel > 0 && Math.abs(getVelError()) <= VELOCITY_TOLERANCE;
     }
 
-    public boolean isHoodReady() {
-        return Double.compare(targetHoodPos, lastHoodPos) == 0 && hoodTimer.milliseconds() >= HOOD_SETTLE_MS;
-    }
-
     public boolean isReady() {
-        return isAtSpeed() && isHoodReady();
+        return isAtSpeed();
     }
 
     @Override
@@ -197,7 +191,6 @@ public final class Shooter extends Subsystem{
         if (Double.compare(targetHoodPos, lastHoodPos) != 0) {
             hood.setPosition(targetHoodPos);
             lastHoodPos = targetHoodPos;
-            hoodTimer.reset();
         }
     }
 

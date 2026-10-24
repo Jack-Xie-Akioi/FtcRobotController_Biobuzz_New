@@ -16,4 +16,26 @@ public class Constants {
     //PANTOGRAPH
     public static double PANTOGRAPH_RAISED_POSITION = 0.2;
     public static double PANTOGRAPH_LOWERED_POSITION = 0.75;
+
+    //TURRET
+    public static double LEFT_CENTER_POSITION = 0.5;
+    public static double RIGHT_CENTER_POSITION = 0.5;
+
+    public static double LEFT_MIN_POSITION = 0;
+    public static double LEFT_MAX_POSITION = 1;
+
+    public static double RIGHT_MIN_POSITION = 0;
+    public static double RIGHT_MAX_POSITION = 1;
+
+    public static double TURRET_Y_OFFSET = 0;
+
+    //SHOOTER
+    public static double KP = 0;
+    public static double KI = 0;
+    public static double KD = 0;
+
+    public static double KS = 0;
+    public static double KV = 0;
+
+
 }
