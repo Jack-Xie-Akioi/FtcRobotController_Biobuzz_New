@@ -21,43 +21,39 @@ public class ShooterTest extends OpMode {
     private static final double TICKS_PER_REV = 28;
 
     // Change these live from Panels
-    public static int mRPM = 0;
     public static double mpower = 0;
+    public static int mode=0;
     private TelemetryManager panelsTelemetry;
 
     @Override
     public void init() {
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
-        motor = hardwareMap.get(DcMotorEx.class, "Shooter");
-        motor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-
         shooter = new Shooter();
         shooter.init(hardwareMap);
 
     }
-
     @Override
     public void start() {
-        // runs once when you press START
+        shooter.flywheelPreset(constants.FLYWHEEL.ON);
     }
-
     @Override
     public void loop() {
-
-        motor.setPower(mpower);
-        //shooter.update(mRPM);
-        double ticksPerSec = motor.getVelocity();
-
+        if (mode==0){
+            shooter.update();
+        }
+        else if (mode==1){
+            shooter.setPower(mpower);
+        }
 
         panelsTelemetry.debug("Target RPM", constants.shooter.TARGET_RPM);
-        panelsTelemetry.debug("Acutual RPM", ticksPerSec);
-        panelsTelemetry.update(telemetry);
-    }
+        panelsTelemetry.debug("Acutual RPM", shooter.getRPM());
+        panelsTelemetry.debug("Caculated Power", shooter.calculate());
 
-    @Override
-    public void stop() {
-        motor.setPower(0);
-        shooter.flywheelPreset(constants.FLYWHEEL.OFF);
+        panelsTelemetry.addData("Target", constants.shooter.TARGET_RPM);
+        panelsTelemetry.addData("Actual", shooter.getRPM());
+        panelsTelemetry.addData("Error", constants.shooter.TARGET_RPM - shooter.getRPM());
+
+        panelsTelemetry.update(telemetry);
     }
 }

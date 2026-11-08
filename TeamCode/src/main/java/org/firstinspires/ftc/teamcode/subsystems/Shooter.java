@@ -107,23 +107,23 @@ public class Shooter {
 
 
     /** Call every loop. Runs the flywheel controller and updates the hood. */
-    public void update(double TARGET_RPM) {
+    public void update() {
         updateBatteryVoltage();
 
         if (flywheelState) {
-            power = calculate(TARGET_RPM);
+            power = calculate();
             motor.setPower(power);
         } else {
             motor.setPower(0);
         }
-        //setHood(constants.shooter.Hood_pos);
+        setHood(constants.shooter.Hood_pos);
     }
 
     /** Feedforward + proportional control with battery voltage compensation. */
-    public double calculate(double TARGET_RPM) {
+    public double calculate() {
         rpm = motor.getVelocity();
 
-        double setpoint = TARGET_RPM;
+        double setpoint = constants.shooter.TARGET_RPM;
         double error = setpoint - rpm;
 
         double feedforward = constants.shooter.kS + constants.shooter.kV * setpoint;
@@ -154,6 +154,9 @@ public class Shooter {
 
     public void setHood(double pos) {
         hood.setPosition(Math.max(0, Math.min(1, pos)));
+    }
+    public void setPower(double power){
+        motor.setPower(power);
     }
 
     public void setStopper(boolean isStopped) {

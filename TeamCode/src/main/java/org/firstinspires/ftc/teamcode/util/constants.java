@@ -38,12 +38,13 @@ public class constants {
 
         // Flywheel control gains
         public static double kS = 0.0;              // TUNE: static friction power
-        public static double kV = 0.000357;         // TUNE: power per tick/sec (starting guess = 1 / 2800 for a 6000 rpm, 28 tick/rev motor)
+        public static double kV = 0.00045;         // TUNE: power per tick/sec (starting guess = 1 / 2800 for a 6000 rpm, 28 tick/rev motor)
         public static double kP = 0.0;           // TUNE: proportional gain on velocity error
         public static double CLAMP_NEG_POWER = 0.0; // lowest power allowed (0 = never reverse-brake the flywheel)
 
         // Hood servo
-        public static double MIN_ANGLE = 0.0;       // TUNE: hood position for RESET (lowest angle)
+        public static double MIN_ANGLE = 0.1;
+        public static double MAX_ANGLE = 1;
 
         // Stopper servo
         public static double STOP = 0.0;            // TUNE: stopper blocking the ball
