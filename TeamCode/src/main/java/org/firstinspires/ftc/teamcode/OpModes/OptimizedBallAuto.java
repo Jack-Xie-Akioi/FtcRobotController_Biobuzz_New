@@ -29,6 +29,9 @@ public class OptimizedBallAuto extends OpMode {
     public static double START_Y = 0;
     public static double START_HEADING = 0;
 
+    private Pose[] getDetectedBallFieldPoses;
+
+
     @Override
     public void init() {
 
@@ -42,6 +45,7 @@ public class OptimizedBallAuto extends OpMode {
 
         telemetry.addLine("Initialized");
         telemetry.update();
+
     }
 
     @Override
@@ -56,7 +60,7 @@ public class OptimizedBallAuto extends OpMode {
 
         if (!pathStarted) {
 
-            Pose[] balls = getDetectedBallFieldPoses();
+            Pose[] balls = getDetectedBallFieldPoses;
 
             if (balls.length > 0) {
 
@@ -74,15 +78,6 @@ public class OptimizedBallAuto extends OpMode {
         telemetry.addData("Robot Y", follower.pose().y());
         telemetry.addData("Following Path", follower.isBusy());
         telemetry.update();
-    }
-
-    // ==========================================
-    // LIMELIGHT INPUT
-    // ==========================================
-
-    private Pose[] getDetectedBallFieldPoses() {
-        // TODO: Implement Limelight ball detection.
-        return new Pose[0];
     }
 
     // ==========================================
