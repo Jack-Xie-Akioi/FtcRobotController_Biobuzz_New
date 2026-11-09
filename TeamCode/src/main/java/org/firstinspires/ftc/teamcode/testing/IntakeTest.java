@@ -20,6 +20,8 @@ public class IntakeTest extends OpMode {
     public void loop(){
         intake.setIntake(constants.INTAKE_PRESETS.ON);
 
+        //RIcky
+        
     }
 
 }
