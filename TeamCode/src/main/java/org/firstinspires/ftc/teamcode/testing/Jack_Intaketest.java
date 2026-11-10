@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.subsystems.Shooter;
 import org.firstinspires.ftc.teamcode.util.constants;
 
 @TeleOp(name = "Jack Intake Test")
@@ -27,7 +28,10 @@ public class Jack_Intaketest extends OpMode {
 
     private TelemetryManager panelsTelemetry;
 
+    private Shooter shooter;
+
     public void init() {
+
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
         intakeleft = hardwareMap.get(DcMotorEx.class, "IntakeLeft");
@@ -44,15 +48,22 @@ public class Jack_Intaketest extends OpMode {
         servoL = hardwareMap.get(Servo.class, "IntakeServoLeft");
         servoR = hardwareMap.get(Servo.class, "IntakeServoRight");
         servoR.setDirection(Servo.Direction.REVERSE);
+
+        shooter = new Shooter();
+        shooter.init(hardwareMap);
     }
 
     @Override
     public void start() {
-
+        shooter.flywheelPreset(constants.FLYWHEEL.ON);
     }
 
     public void loop() {
+
+        shooter.update();
+
         int Intake_power;
+
         if (m == 1) {
             Intake_power = 1;
         } else if (m == 2) {
