@@ -116,7 +116,7 @@ public class Shooter {
         } else {
             motor.setPower(0);
         }
-        setHood(constants.shooter.Hood_pos);
+        //setHood(constants.shooter.Hood_pos);
     }
 
     /** Feedforward + proportional control with battery voltage compensation. */

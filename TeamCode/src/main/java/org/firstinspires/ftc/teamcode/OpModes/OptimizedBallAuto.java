@@ -48,6 +48,10 @@ public class OptimizedBallAuto extends OpMode {
 
     }
 
+    public OptimizedBallAuto(Pose[] DetectedBallFieldPoses) {
+        getDetectedBallFieldPoses = DetectedBallFieldPoses;
+    }
+
     @Override
     public void start() {
         pathStarted = false;
