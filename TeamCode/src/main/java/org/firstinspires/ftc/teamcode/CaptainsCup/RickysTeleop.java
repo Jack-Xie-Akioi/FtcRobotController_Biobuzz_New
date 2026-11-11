@@ -55,22 +55,44 @@ public class RickysTeleop extends OpMode{
         Shooter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         FrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        BackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @Override
     public void loop() {
-        Shooter.setPower(1);
+        if(gamepad1.circle){
+            Shooter.setPower(0.8);
+        }
+        else if(gamepad1.cross){
+            Shooter.setPower(0.9);
+        }
+        else if(gamepad1.triangle){
+            Shooter.setPower(0.75);
+        }
+        else if(gamepad1.square){
+            Shooter.setPower(0.7);
+        }
+        else{
+            Shooter.setPower(0.7);
+        }
 
-        x = gamepad1.left_stick_x;
+        x = gamepad1.right_stick_x;
         y = gamepad1.left_stick_y;
-        rx = gamepad1.right_stick_x;
+        rx = gamepad1.left_stick_x;
 
         if(gamepad1.left_trigger > 0){
+            Intake1.setPower(-1);
+        }
+        else if(gamepad1.left_bumper){
             Intake1.setPower(1);
+        }
+        else{
+            Intake1.setPower(0);
         }
         if(gamepad1.right_trigger > 0){
             Intake2.setPower(1);
+        }
+        else{
+            Intake2.setPower(0);
         }
 
         FrontLeft.setPower((x+y+rx)/3);
