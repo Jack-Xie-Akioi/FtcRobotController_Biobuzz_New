@@ -30,6 +30,8 @@ public class Jack_Intaketest extends OpMode {
 
     private Shooter shooter;
 
+    public static double Intake_power=0;
+
     public void init() {
 
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
@@ -61,16 +63,6 @@ public class Jack_Intaketest extends OpMode {
     public void loop() {
 
         shooter.update();
-
-        int Intake_power;
-
-        if (m == 1) {
-            Intake_power = 1;
-        } else if (m == 2) {
-            Intake_power = -1;
-        } else {
-            Intake_power = 0;
-        }
 
         intakeleft.setPower(Intake_power);
         intakeright.setPower(Intake_power);
