@@ -90,6 +90,7 @@ public class RickysTeleop extends OpMode{
         }
         if(gamepad1.right_trigger > 0){
             Intake2.setPower(1);
+            Intake1.setPower(-1);
         }
         else{
             Intake2.setPower(0);
