@@ -14,24 +14,14 @@ import org.firstinspires.ftc.teamcode.util.constants;
 @TeleOp(name = "Shooter Test", group = "Test")
 @Configurable
 public class ShooterTest extends OpMode {
-    private DcMotorEx motor;
     private Shooter shooter;
-
-    // TUNE: encoder ticks per flywheel revolution
-    private static final double TICKS_PER_REV = 28;
-
-    // Change these live from Panels
-    public static double mpower = 0;
-    public static int mode=0;
     private TelemetryManager panelsTelemetry;
 
     @Override
     public void init() {
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
-
         shooter = new Shooter();
         shooter.init(hardwareMap);
-
     }
     @Override
     public void start() {
@@ -39,12 +29,7 @@ public class ShooterTest extends OpMode {
     }
     @Override
     public void loop() {
-        if (mode==0){
-            shooter.update();
-        }
-        else if (mode==1){
-            shooter.setPower(mpower);
-        }
+        shooter.update();
 
         panelsTelemetry.debug("Target RPM", constants.shooter.TARGET_RPM);
         panelsTelemetry.debug("Acutual RPM", shooter.getRPM());

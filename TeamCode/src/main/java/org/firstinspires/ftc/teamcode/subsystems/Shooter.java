@@ -37,7 +37,7 @@ public class Shooter {
         motor = map.get(DcMotorEx.class, "Shooter");
         motor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         // If the flywheel spins the wrong way, uncomment:
-        // motor.setDirection(DcMotorEx.Direction.REVERSE);
+        motor.setDirection(DcMotorEx.Direction.REVERSE);
 
         hood = map.get(Servo.class, "ShooterHood");
         //stopper = map.get(Servo.class, "Stopper");

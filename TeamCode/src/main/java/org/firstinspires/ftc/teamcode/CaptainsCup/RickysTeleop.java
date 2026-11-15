@@ -81,25 +81,26 @@ public class RickysTeleop extends OpMode{
 
         if(gamepad1.left_trigger > 0){
             Intake1.setPower(-1);
+            Intake2.setPower(0);
         }
         else if(gamepad1.left_bumper){
             Intake1.setPower(1);
+            Intake2.setPower(0);
+        }
+        else if(gamepad1.right_trigger > 0){
+            Intake2.setPower(1);
+            Intake1.setPower(-1);
         }
         else{
             Intake1.setPower(0);
-        }
-        if(gamepad1.right_trigger > 0){
-            Intake2.setPower(1);
-        }
-        else{
             Intake2.setPower(0);
         }
 
-        FrontLeft.setPower((x+y+rx)/3);
-        FrontRight.setPower((y-x-rx)/3);
-        BackLeft.setPower((y-x+rx)/3);
-        BackRight.setPower((y+x-rx)/3);
-
+        double denominator = Math.max(Math.abs(x) + Math.abs(y) + Math.abs(rx), 1.0);
+        FrontLeft.setPower((y + x + rx) / denominator);
+        FrontRight.setPower((y - x - rx) / denominator);
+        BackLeft.setPower((y - x + rx) / denominator);
+        BackRight.setPower((y + x - rx) / denominator);
     }
 
 }

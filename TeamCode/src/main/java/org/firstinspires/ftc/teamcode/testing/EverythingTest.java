@@ -12,11 +12,12 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.subsystems.Shooter;
+import org.firstinspires.ftc.teamcode.subsystems.Turret;
 import org.firstinspires.ftc.teamcode.util.constants;
 
-@TeleOp(name = "Jack Intake Test")
+@TeleOp(name = "Everything Test")
 @Configurable
-public class Jack_Intaketest extends OpMode {
+public class EverythingTest extends OpMode {
     public static int m = 0;
     public static double Servo_pos = 0.5;
 
@@ -29,6 +30,7 @@ public class Jack_Intaketest extends OpMode {
     private TelemetryManager panelsTelemetry;
 
     private Shooter shooter;
+    private Turret turret;
 
     public static double Intake_power=0;
 
@@ -53,6 +55,9 @@ public class Jack_Intaketest extends OpMode {
 
         shooter = new Shooter();
         shooter.init(hardwareMap);
+
+        turret = new Turret();
+        turret.init(hardwareMap);
     }
 
     @Override
@@ -63,15 +68,20 @@ public class Jack_Intaketest extends OpMode {
     public void loop() {
 
         shooter.update();
+        turret.periodic();
 
         intakeleft.setPower(Intake_power);
         intakeright.setPower(Intake_power);
         servoL.setPosition(Servo_pos-constants.intake.servo_offset);
         servoR.setPosition(Servo_pos);
 
-        panelsTelemetry.debug("Mode", m);
-        panelsTelemetry.debug("Power", Intake_power);
-        panelsTelemetry.debug("Servo pos", Servo_pos);
+        panelsTelemetry.debug("Target RPM", constants.shooter.TARGET_RPM);
+        panelsTelemetry.debug("Acutual RPM", shooter.getRPM());
+        panelsTelemetry.debug("Caculated Power", shooter.calculate());
+
+        panelsTelemetry.addData("Target", constants.shooter.TARGET_RPM);
+        panelsTelemetry.addData("Actual", shooter.getRPM());
+        panelsTelemetry.addData("Error", constants.shooter.TARGET_RPM - shooter.getRPM());
         panelsTelemetry.update(telemetry);
     }
 }

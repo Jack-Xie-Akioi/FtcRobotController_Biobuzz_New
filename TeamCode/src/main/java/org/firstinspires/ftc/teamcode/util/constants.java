@@ -37,9 +37,9 @@ public class constants {
         public static double Hood_pos = 0;     // where the hood is currently commanded
 
         // Flywheel control gains
-        public static double kS = 0.0;              // TUNE: static friction power
-        public static double kV = 0.000435;         // TUNE: power per tick/sec (starting guess = 1 / 2800 for a 6000 rpm, 28 tick/rev motor)
-        public static double kP = 0.001;           // TUNE: proportional gain on velocity error
+        public static double kS = 0.07;              // TUNE: static friction power
+        public static double kV = 0.00039;         // TUNE: power per tick/sec (starting guess = 1 / 2800 for a 6000 rpm, 28 tick/rev motor)
+        public static double kP = 0.0001;           // TUNE: proportional gain on velocity error
         public static double CLAMP_NEG_POWER = 0.0; // lowest power allowed (0 = never reverse-brake the flywheel)
 
         // Hood servo
