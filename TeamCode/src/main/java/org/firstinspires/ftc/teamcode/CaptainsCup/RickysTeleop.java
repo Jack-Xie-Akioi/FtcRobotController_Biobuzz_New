@@ -96,10 +96,10 @@ public class RickysTeleop extends OpMode{
             Intake2.setPower(0);
         }
 
-        FrontLeft.setPower((x+y+rx)/3);
-        FrontRight.setPower((y-x-rx)/3);
-        BackLeft.setPower((y-x+rx)/3);
-        BackRight.setPower((y+x-rx)/3);
+        FrontLeft.setPower((x+y+rx));
+        FrontRight.setPower((y-x-rx));
+        BackLeft.setPower((y-x+rx));
+        BackRight.setPower((y+x-rx));
 
     }
 
