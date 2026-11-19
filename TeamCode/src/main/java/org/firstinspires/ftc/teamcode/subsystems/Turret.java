@@ -75,7 +75,7 @@ public class Turret {
         return angle;
     }
 
-    private void setTargetAngle(double angle) {
+    public void setTargetAngle(double angle) {
         target = angle;
     }
 

@@ -20,6 +20,7 @@ import org.firstinspires.ftc.teamcode.util.constants;
 public class EverythingTest extends OpMode {
     public static int m = 0;
     public static double Servo_pos = 0.5;
+    public static double Turret_Angle=0;
 
     private DcMotorEx intakeleft;
     private DcMotorEx intakeright;
@@ -69,6 +70,7 @@ public class EverythingTest extends OpMode {
 
         shooter.update();
         turret.periodic();
+        turret.setTargetAngle(Turret_Angle);
 
         intakeleft.setPower(Intake_power);
         intakeright.setPower(Intake_power);
